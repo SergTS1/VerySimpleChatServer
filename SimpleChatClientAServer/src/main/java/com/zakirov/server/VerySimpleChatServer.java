@@ -12,6 +12,11 @@ public class VerySimpleChatServer {
 
     ArrayList clientOutputStreams;
 
+
+    public static void main (String[] args) {
+        new VerySimpleChatServer().go();
+    }
+
     public class ClientHandler implements Runnable {
         BufferedReader reader;
         Socket sock;
@@ -38,14 +43,10 @@ public class VerySimpleChatServer {
         }
     }
 
-    public static void main (String[] args) {
-        new VerySimpleChatServer().go();
-    }
-
     public void go() {
         clientOutputStreams = new ArrayList();
         try {
-            ServerSocket serverSock = new ServerSocket(5000);
+            ServerSocket serverSock = new ServerSocket(4999);
             while(true) {
                 Socket clientSocket = serverSock.accept();
                 PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
